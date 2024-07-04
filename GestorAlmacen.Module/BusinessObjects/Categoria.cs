@@ -56,5 +56,30 @@ namespace GestorAlmacen.Module.BusinessObjects
             get => _categPadre;
             set => SetPropertyValue(nameof(CategPadre), ref _categPadre, value);
         }
+
+        //Relacion OneToOne Categoria-Producto
+        Producto _producto = null;
+        public Producto Producto {
+            get { return _producto; }
+            set
+            {
+                if (_producto == value)
+                    return;
+
+                // Store a reference to the former owner.
+                Producto _prevProducto = _producto;
+                _producto = value;
+
+                if (IsLoading) return;
+
+                // Remove an owner's reference to this building, if exists.
+                if (_prevProducto != null && _prevProducto.Categoria == this)
+                    _prevProducto.Categoria = null;
+
+                // Specify that the building is a new owner's house.
+                if (_producto != null)
+                    _producto.Categoria = this;
+                OnChanged(nameof(Producto));
+            }
     }
 }

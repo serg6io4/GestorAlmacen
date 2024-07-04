@@ -1,4 +1,5 @@
 ﻿using DevExpress.Data.Filtering;
+using DevExpress.DirectX.Common.DirectWrite;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.DC;
 using DevExpress.ExpressApp.Model;
@@ -33,8 +34,8 @@ namespace GestorAlmacen.Module.BusinessObjects
             base.AfterConstruction();
             // Place your initialization code here (https://documentation.devexpress.com/eXpressAppFramework/CustomDocument112834.aspx).
         }
-        //Atributos Pedido
 
+        //Atributos Pedido
         private DateTime _fechPedido;
         private string _estadoPedido;
         private string _metodoPago;
@@ -42,6 +43,7 @@ namespace GestorAlmacen.Module.BusinessObjects
         private string _correoElec;
         private double _totalPedido;
 
+        
         //Metodos FechPedido
         public DateTime FechPedido {
             get => _fechPedido;
@@ -76,6 +78,29 @@ namespace GestorAlmacen.Module.BusinessObjects
         {
             get => _totalPedido;
             set => SetPropertyValue(nameof(TotalPedido), ref _totalPedido, value);
+        }
+
+        //Relacion OneToOne Pedido-Factura
+        Factura _factura = null;
+        public Factura Factura {
+            get { return _factura;}
+            set {
+                if (_factura == value) { return; }
+                //Almacenar la referencia del actual factura
+                Factura _prevFactura = _factura;
+                _factura = value;
+
+                if (IsLoading) { return; }
+
+                // Remove an owner's reference to this building, if exists.
+                if (_prevFactura != null && _prevFactura.Pedido == this)
+                    _prevFactura.Pedido = null;
+
+                // Specify that the building is a new owner's house.
+                if (_factura != null)
+                    _factura.Pedido = this;
+                OnChanged(nameof(Factura));
+            }
         }
     }
 }

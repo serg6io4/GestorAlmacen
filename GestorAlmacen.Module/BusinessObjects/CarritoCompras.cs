@@ -48,5 +48,32 @@ namespace GestorAlmacen.Module.BusinessObjects
             get => _precioTotal;
             set => SetPropertyValue(nameof(PrecioTotal), ref _precioTotal, value);
         }
+
+        //Relacion OneToOne Cliente-CarritoCompras
+        Cliente _cliente = null;
+        public Cliente Cliente
+        {
+            get { return _cliente; }
+            set
+            {
+                if (_cliente == value)
+                    return;
+
+                // Store a reference to the former owner.
+                Cliente _prevCliente = _cliente;
+                _cliente = value;
+
+                if (IsLoading) return;
+
+                // Remove an owner's reference to this building, if exists.
+                if (_prevCliente != null && _prevCliente.Carrito == this)
+                    _prevCliente.Carrito = null;
+
+                // Specify that the building is a new owner's house.
+                if (_cliente != null)
+                    _cliente.Carrito = this;
+                OnChanged(nameof(Cliente));
+            }
+        }
     }
 }

@@ -55,5 +55,29 @@ namespace GestorAlmacen.Module.BusinessObjects
             get => _impuestosAplic;
             set => SetPropertyValue(nameof(ImpuestosAplic), ref _impuestosAplic, value);
         }
+
+        //Relacion OneToOne factura-Pedido
+        Pedido _pedido = null;
+        public Pedido Pedido {
+            get { return _pedido;}
+            set
+            {
+                if (_pedido == null) { return;}
+                //Almacenar la referencia del actual factura
+                Pedido _prevPedido = _pedido;
+                _pedido = value;
+
+                if (IsLoading) { return;}
+
+                if (_prevPedido != null && _prevPedido.Factura == this)
+                    _prevPedido.Factura = null;
+
+                // Specify that the building is a new owner's house.
+                if (_pedido != null)
+                    _pedido.Factura = this;
+                OnChanged(nameof(Pedido));
+
+            }
+        }
     }
 }

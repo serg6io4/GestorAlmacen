@@ -41,7 +41,7 @@ namespace GestorAlmacen.Module.BusinessObjects
         private int _cp;
 
         //Relacion OneToOne Ubicacion-Almacen
-        public Almacen _almacen;
+        public Almacen _almacen = null;
 
         //Metodos de Longitud
         public int Longitud {

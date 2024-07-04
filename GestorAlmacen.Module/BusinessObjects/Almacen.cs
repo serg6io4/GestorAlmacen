@@ -40,7 +40,7 @@ namespace GestorAlmacen.Module.BusinessObjects
         private DateTime _fechaAct;
 
         //Relacion OneToOne Ubicacion
-        public Ubicacion _ubicacion;
+        public Ubicacion _ubicacion = null;
 
         //Metodos de Nombre
         public string Nombre {

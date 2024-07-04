@@ -77,5 +77,32 @@ namespace GestorAlmacen.Module.BusinessObjects
             get => _fechRegistro;
             set => SetPropertyValue(nameof(FechRegistro), ref _fechRegistro, value);
         }
+
+        //Relacion OneToOne Cliente-CarritoCompras
+        CarritoCompras _carrito = null;
+        public CarritoCompras Carrito
+        {
+            get { return _carrito; }
+            set
+            {
+                if (_carrito == value)
+                    return;
+
+                // Store a reference to the former owner.
+                CarritoCompras _prevCarrito = _carrito;
+                _carrito = value;
+
+                if (IsLoading) return;
+
+                // Remove an owner's reference to this building, if exists.
+                if (_prevCarrito != null && _prevCarrito.Cliente == this)
+                    _prevCarrito.Cliente = null;
+
+                // Specify that the building is a new owner's house.
+                if (_carrito != null)
+                    _carrito.Cliente = this;
+                OnChanged(nameof(Carrito));
+            }
+        }
     }
 }
