@@ -60,5 +60,30 @@ namespace GestorAlmacen.Module.BusinessObjects
             get => _estadoPago;
             set => SetPropertyValue(nameof(EstadoPago), ref _estadoPago, value);
         }
+
+        //Relacion OneToOne Pedido-Pago
+        Pedido _pedido = null;
+        public Pedido Pedido
+        {
+            get { return _pedido; }
+            set
+            {
+                if (_pedido == value) { return; }
+                
+                Pedido _prevPedido = _pedido;
+                _pedido = value;
+
+                if (IsLoading) { return; }
+
+                
+                if (_prevPedido != null && _prevPedido.Pago == this)
+                    _prevPedido.Pago = null;
+
+                
+                if (_pedido != null)
+                    _pedido.Pago = this;
+                OnChanged(nameof(Pedido));
+            }
+        }
     }
 }

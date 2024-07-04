@@ -102,5 +102,31 @@ namespace GestorAlmacen.Module.BusinessObjects
                 OnChanged(nameof(Factura));
             }
         }
+
+        //Relacion OneToOne Pedido-Pago
+        Pago _pago = null;
+        public Pago Pago
+        {
+            get { return _pago; }
+            set
+            {
+                if (_pago == value) { return; }
+                
+                Pago _prevPago = _pago;
+                _pago = value;
+
+                if (IsLoading) { return; }
+
+                
+                if (_prevPago != null && _prevPago.Pedido == this)
+                    _prevPago.Pedido = null;
+
+                
+                if (_pago != null)
+                    _pago.Pedido = this;
+                OnChanged(nameof(Pago));
+            }
+        }
+
     }
 }

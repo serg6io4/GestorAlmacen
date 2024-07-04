@@ -97,17 +97,17 @@ namespace GestorAlmacen.Module.BusinessObjects
                 if (_categoria == value)
                     return;
 
-                // Store a reference to the former owner.
+                
                 Categoria _prevCategoria = _categoria;
                 _categoria = value;
 
                 if (IsLoading) return;
 
-                // Remove an owner's reference to this building, if exists.
+                
                 if (_prevCategoria != null && _prevCategoria.Producto == this)
                     _prevCategoria.Producto = null;
 
-                // Specify that the building is a new owner's house.
+                
                 if (_categoria != null)
                     _categoria.Producto = this;
                 OnChanged(nameof(Categoria));
