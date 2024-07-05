@@ -69,5 +69,13 @@ namespace GestorAlmacen.Module.BusinessObjects
             get => _correoElec;
             set => SetPropertyValue(nameof(CorreoElec), ref _correoElec, value);
         }
+
+        //Relacion OneToMany Proveedor-Producto
+        [Association]
+        public XPCollection<Producto> Productos
+        {
+            get { return GetCollection<Producto>(nameof(Productos)); }
+        }
+
     }
 }

@@ -113,5 +113,40 @@ namespace GestorAlmacen.Module.BusinessObjects
                 OnChanged(nameof(Categoria));
             }
         }
+        //Relacion OneToMany Almacen-Producto
+        [Association]
+        public Almacen Almacen
+        {
+            get { return fAlmacen; }
+            set { SetPropertyValue(nameof(Almacen), ref fAlmacen, value); }
+        }
+        Almacen fAlmacen;
+
+        //Relacion OneToMany Proveedor-Producto
+        [Association]
+        public Proveedor Proveedor
+        {
+            get { return fProveedor; }
+            set { SetPropertyValue(nameof(Proveedor), ref fProveedor, value); }
+        }
+        Proveedor fProveedor;
+
+        //Relacion OneToMany Promocion-Producto
+        [Association]
+        public Promocion Promocion
+        {
+            get { return fPromocion; }
+            set { SetPropertyValue(nameof(Promocion), ref fPromocion, value); }
+        }
+        Promocion fPromocion;
+
+        //Relacion OneToMany CarritoCompras-Producto
+        [Association]
+        public CarritoCompras CarritoCompras
+        {
+            get { return fCarritoCompras; }
+            set { SetPropertyValue(nameof(CarritoCompras), ref fCarritoCompras, value); }
+        }
+        CarritoCompras fCarritoCompras;
     }
 }

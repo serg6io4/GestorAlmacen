@@ -90,6 +90,11 @@ namespace GestorAlmacen.Module.BusinessObjects
             }
 
         }
-
+        //Relacion OneToMany Almacen-Producto
+        [Association]
+        public XPCollection<Producto> Productos
+        {
+            get { return GetCollection<Producto>(nameof(Productos)); }
+        }
     }
 }

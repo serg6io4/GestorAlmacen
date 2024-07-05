@@ -70,5 +70,11 @@ namespace GestorAlmacen.Module.BusinessObjects
             set => SetPropertyValue(nameof(FechFinal), ref _fechFinal, value);
         }
 
+        //Relacion OneToMany Promocion-Producto
+        [Association]
+        public XPCollection<Producto> Productos
+        {
+            get { return GetCollection<Producto>(nameof(Productos)); }
+        }
     }
 }

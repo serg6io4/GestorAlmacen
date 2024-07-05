@@ -40,8 +40,9 @@ namespace GestorAlmacen.Module.BusinessObjects
         private string _categPadre;
 
         //Metodos Nombre
-        public string Nombre { 
-            get=> _nombre;
+        public string Nombre
+        {
+            get => _nombre;
             set => SetPropertyValue(nameof(Nombre), ref _nombre, value);
         }
         //Metodos Descripcion
@@ -59,27 +60,29 @@ namespace GestorAlmacen.Module.BusinessObjects
 
         //Relacion OneToOne Categoria-Producto
         Producto _producto = null;
-        public Producto Producto {
+        public Producto Producto
+        {
             get { return _producto; }
             set
             {
                 if (_producto == value)
                     return;
 
-                
+
                 Producto _prevProducto = _producto;
                 _producto = value;
 
                 if (IsLoading) return;
 
-                
+
                 if (_prevProducto != null && _prevProducto.Categoria == this)
                     _prevProducto.Categoria = null;
 
-                
+
                 if (_producto != null)
                     _producto.Categoria = this;
                 OnChanged(nameof(Producto));
             }
+        }
     }
 }

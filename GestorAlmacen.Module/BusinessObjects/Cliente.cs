@@ -104,5 +104,12 @@ namespace GestorAlmacen.Module.BusinessObjects
                 OnChanged(nameof(Carrito));
             }
         }
+
+        //Relacion OneToMany Cliente-Pedido
+        [Association]
+        public XPCollection<Pedido> Pedidos
+        {
+            get { return GetCollection<Pedido>(nameof(Pedidos)); }
+        }
     }
 }

@@ -128,5 +128,41 @@ namespace GestorAlmacen.Module.BusinessObjects
             }
         }
 
+        //Relacion OneToOne Pedido-Envio
+        Envio _envio = null;
+        public Envio Envio
+        {
+            get { return _envio; }
+            set
+            {
+                if (_envio == value)
+                    return;
+
+                // Store a reference to the former owner.
+                Envio _prevEnvio = _envio;
+                _envio = value;
+
+                if (IsLoading) return;
+
+                // Remove an owner's reference to this building, if exists.
+                if (_prevEnvio != null && _prevEnvio.Pedido == this)
+                    _prevEnvio.Pedido = null;
+
+                // Specify that the building is a new owner's house.
+                if (_envio != null)
+                    _envio.Pedido = this;
+                OnChanged(nameof(Envio));
+            }
+        }
+
+        //Relacion OneToMany Cliente-Pedido
+        [Association]
+        public Cliente Cliente
+        {
+            get { return fCliente; }
+            set { SetPropertyValue(nameof(Cliente), ref fCliente, value); }
+        }
+        Cliente fCliente;
+
     }
 }
