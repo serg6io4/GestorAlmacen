@@ -63,5 +63,22 @@ namespace GestorAlmacen.Module.BusinessObjects
             set => SetPropertyValue(nameof(ImporteDev), ref _importeDev, value);
         }
 
+        //Relacion ManyToMany Producto-Pedido
+        private Pedido _pedido;
+        [Association]
+        public Pedido Pedido
+        {
+            get { return _pedido; }
+            set { SetPropertyValue(nameof(Pedido), ref _pedido, value); }
+        }
+
+        private Producto _producto;
+        [Association]
+        public Producto Producto
+        {
+            get { return _producto; }
+            set { SetPropertyValue(nameof(Producto), ref _producto, value); }
+        }
+
     }
 }

@@ -148,5 +148,32 @@ namespace GestorAlmacen.Module.BusinessObjects
             set { SetPropertyValue(nameof(CarritoCompras), ref fCarritoCompras, value); }
         }
         CarritoCompras fCarritoCompras;
+
+        //Relacion ManyToMany Producto-Pedido(DetallePedido)
+        [Association, Browsable(false)]
+        public IList<DetallePedido> DetallePedidos
+        {
+            get { return GetList<DetallePedido>(nameof(DetallePedidos)); }
+        }
+
+        [ManyToManyAlias(nameof(DetallePedidos), nameof(DetallePedido.Pedido))]
+        public IList<Pedido> PedidosDetalle
+        {
+            get { return GetList<Pedido>(nameof(PedidosDetalle)); }
+        }
+
+        //Relacion ManyToMany Producto-Pedido(Devolucion)
+        [Association, Browsable(false)]
+        public IList<Devolucion> Devoluciones
+        {
+            get { return GetList<Devolucion>(nameof(Devoluciones)); }
+        }
+
+        [ManyToManyAlias(nameof(Devoluciones), nameof(Devolucion.Pedido))]
+        public IList<Pedido> PedidosDevolucion
+        {
+            get { return GetList<Pedido>(nameof(PedidosDevolucion)); }
+        }
+
     }
 }

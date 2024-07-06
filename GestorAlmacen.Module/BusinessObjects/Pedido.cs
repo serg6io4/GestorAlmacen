@@ -164,5 +164,30 @@ namespace GestorAlmacen.Module.BusinessObjects
         }
         Cliente fCliente;
 
+        //Relacion ManyToMany Producto-Pedido(DetallePedido)
+        [Association, Browsable(false)]
+        public IList<DetallePedido> DetallePedidos
+        {
+            get { return GetList<DetallePedido>(nameof(DetallePedidos)); }
+        }
+
+        [ManyToManyAlias(nameof(DetallePedidos), nameof(DetallePedido.Producto))]
+        public IList<Producto> ProductosDetalle
+        {
+            get { return GetList<Producto>(nameof(ProductosDetalle)); }
+        }
+
+        //Relacion ManyToMany Producto-Pedido(Devolucion)
+        [Association, Browsable(false)]
+        public IList<Devolucion> Devoluciones
+        {
+            get { return GetList<Devolucion>(nameof(Devoluciones)); }
+        }
+
+        [ManyToManyAlias(nameof(Devoluciones), nameof(Devolucion.Producto))]
+        public IList<Producto> ProductosDevolucion
+        {
+            get { return GetList<Producto>(nameof(ProductosDevolucion)); }
+        }
     }
 }

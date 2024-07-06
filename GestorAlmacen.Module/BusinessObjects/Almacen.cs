@@ -39,8 +39,6 @@ namespace GestorAlmacen.Module.BusinessObjects
         private int _cantidadStock;
         private DateTime _fechaAct;
 
-        //Relacion OneToOne Ubicacion
-        public Ubicacion _ubicacion = null;
 
         //Metodos de Nombre
         public string Nombre {
@@ -67,6 +65,7 @@ namespace GestorAlmacen.Module.BusinessObjects
         }
 
         //Relacion OneToOne Ubicacion-Almacen
+        Ubicacion _ubicacion;
         public Ubicacion Ubicacion {
             get { return _ubicacion;}
             set {
