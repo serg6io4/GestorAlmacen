@@ -74,7 +74,7 @@
             this.labelStatus.Name = "labelStatus";
             this.labelStatus.Size = new System.Drawing.Size(50, 13);
             this.labelStatus.TabIndex = 7;
-            this.labelStatus.Text = "Starting...";
+            this.labelStatus.Text = "Iniciando...";
             // 
             // peImage
             // 
@@ -92,7 +92,7 @@
             // 
             // peLogo
             // 
-            this.peLogo.EditValue = ((object)(resources.GetObject("peLogo.EditValue")));
+            /*this.peLogo.EditValue = ((object)(resources.GetObject("peLogo.EditValue")));
             this.peLogo.Location = new System.Drawing.Point(400, 328);
             this.peLogo.Name = "peLogo";
             this.peLogo.Properties.AllowFocused = false;
@@ -101,21 +101,35 @@
             this.peLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.peLogo.Properties.ShowMenu = false;
             this.peLogo.Size = new System.Drawing.Size(70, 20);
-            this.peLogo.TabIndex = 8;
+            this.peLogo.TabIndex = 8;*/
             // 
             // pcApplicationName
             // 
-            this.pcApplicationName.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(114)))), ((int)(((byte)(0)))));
+            this.pcApplicationName.Appearance.BackColor = System.Drawing.Color.Transparent; // Hacer el fondo transparente
             this.pcApplicationName.Appearance.Options.UseBackColor = true;
             this.pcApplicationName.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.pcApplicationName.Controls.Add(this.labelSubtitle);
             this.pcApplicationName.Controls.Add(this.labelApplicationName);
-			this.pcApplicationName.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pcApplicationName.Dock = System.Windows.Forms.DockStyle.Top;
             this.pcApplicationName.Location = new System.Drawing.Point(1, 1);
             this.pcApplicationName.LookAndFeel.UseDefaultLookAndFeel = false;
             this.pcApplicationName.Name = "pcApplicationName";
             this.pcApplicationName.Size = new System.Drawing.Size(494, 220);
             this.pcApplicationName.TabIndex = 10;
+
+            // 
+            // pictureBox
+            // 
+            System.Windows.Forms.PictureBox pictureBox = new System.Windows.Forms.PictureBox();
+            pictureBox.Image = Image.FromFile("C:\\Users\\sergi\\source\\repos\\GestorAlmacen\\GestorAlmacen.Win\\Images\\Inicio.png");
+            pictureBox.Location = new System.Drawing.Point(0, 0);
+            pictureBox.Name = "pictureBox";
+            pictureBox.Size = new System.Drawing.Size(494, 220);
+            pictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            pictureBox.TabIndex = 11;
+            pictureBox.TabStop = false;
+            this.pcApplicationName.Controls.Add(pictureBox);
+            this.pcApplicationName.Controls.SetChildIndex(pictureBox, 0);
             // 
             // labelSubtitle
             // 
@@ -127,19 +141,22 @@
             this.labelSubtitle.Name = "labelSubtitle";
             this.labelSubtitle.Size = new System.Drawing.Size(64, 25);
             this.labelSubtitle.TabIndex = 1;
-            this.labelSubtitle.Text = "Subtitle";
+            this.labelSubtitle.Text = "";
             // 
             // labelApplicationName
             // 
+            /*
             this.labelApplicationName.Appearance.Font = new System.Drawing.Font("Segoe UI", 26.25F);
-            this.labelApplicationName.Appearance.ForeColor = System.Drawing.SystemColors.Window;
-            this.labelApplicationName.Appearance.Options.UseFont = true;
-            this.labelApplicationName.Appearance.Options.UseForeColor = true;
+            this.labelApplicationName.Appearance.ForeColor = System.Drawing.Color.Black;
+            this.labelApplicationName.Appearance.BackColor = System.Drawing.Color.Transparent;
+            this.labelApplicationName.Appearance.Options.UseBackColor = true;
             this.labelApplicationName.Location = new System.Drawing.Point(123, 84);
             this.labelApplicationName.Name = "labelApplicationName";
             this.labelApplicationName.Size = new System.Drawing.Size(278, 47);
             this.labelApplicationName.TabIndex = 0;
-            this.labelApplicationName.Text = "Application Name";
+            this.labelApplicationName.Text = "WareHouse Manager";
+            this.labelApplicationName.BringToFront();
+            */
             // 
             // XafSplashScreen
             // 
@@ -147,8 +164,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(496, 370);
-            this.Controls.Add(this.pcApplicationName);
             this.Controls.Add(this.peImage);
+            this.Controls.Add(this.pcApplicationName);
             this.Controls.Add(this.peLogo);
             this.Controls.Add(this.labelStatus);
             this.Controls.Add(this.labelCopyright);
